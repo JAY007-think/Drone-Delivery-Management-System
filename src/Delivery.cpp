@@ -10,12 +10,7 @@ Delivery::Delivery(){
     deliveryStatus="Not Started";
     
 }
-Delivery::Delivery(int deliveryid, int orderid, int droneid){
-    deliveryId=deliveryid;
-    orderId=orderid;
-    droneId=droneid;
-    deliveryStatus="Not Started";
-}
+
 void Delivery::startDelivery(){
     cout<<"enter delivery ID :";
     cin>>deliveryId;
@@ -40,6 +35,11 @@ void Delivery::displayDelivery(){
     cout<<"\nDelivery Date      :"<<deliveryDate;
     cout<<"\nStatus             :"<<deliveryStatus<<"\n";
 }
-void Delivery::saveHistory(){
 
+int Delivery::getOrderId(){
+    return orderId;
+}
+
+int Delivery::getDroneId(){
+    return droneId;
 }

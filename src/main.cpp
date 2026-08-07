@@ -3,26 +3,13 @@
 #include "Drone.h"
 #include "Customer.h"
 #include "Order.h"
+#include "Delivery.h"
 
 using namespace std;
 
 vector<Drone> drones;
 vector<Customer> customers;
 vector<Order> orders;
-
-class Delivery{
-    private:
-        int deliveryId;
-        int orderId;
-        int droneId;
-        string deliveryDate;
-    public:
-        Delivery();
-        Delivery(int deliveryId, int orderId, int droneId);
-        void startDelivery();
-        void completeDelivery();
-        void saveHistory();
-};
 
 int main(){
     int ch;
@@ -39,23 +26,55 @@ int main(){
         switch (ch)
         {
             case 1: {
-                cout << "Customer Management" << endl;
-                Customer c;
-                c.addCustomer();
-                customers.push_back(c);
-                for(int i = 0; i < customers.size(); i++){
-                    customers[i].displayCustomer();
+                while(true){
+                    int customerCh;
+                    cout << "\n========== Customer Management ==========" << endl;
+                    cout << "1.Add New Customer " << endl;
+                    cout << "2.View Customer " << endl;
+                    cout << "3.Delete Customer " << endl;
+                    cout << "4.Back To Main Menu" << endl;
+                    cout << "Enter Choice: ";
+                    cin >> customerCh;
+
+                    switch (customerCh){
+                    case 1: {
+                        Customer c;
+                        if(c.addCustomer()){
+                            customers.push_back(c);
+                        }
+                        break;
+                    }
+                    case 2: {
+                        for(int i = 0; i < customers.size(); i++){
+                            customers[i].displayCustomer();
+                        }
+                        break;
+                    }
+                    case 3: {
+                        cout << "deleted customer (abhi delete vala feature add nhi kiya h)" << endl;
+                        break;
+                    }
+                    case 4: {
+                        break;
+                    }
+                    default:{
+                        cout << "Invalid choice!" << endl;
+                        break;
+                        }
+                    }
+                    if(customerCh == 4){
+                        break;
+                    }
                 }
             } break;
             case 2: {
-                cout << "Order Management" << endl;
                 while(true){
                     int orderCh;
                     cout << "\n========== Order Management ==========" << endl;
                     cout << "1. Create Order" << endl;
                     cout << "2. View Orders" << endl;
                     cout << "3. Assign Drone" << endl;
-                    cout << "4. Back" << endl;
+                    cout << "4. Back To Main Menu" << endl;
                     cout << "Enter Choice: ";
                     cin >> orderCh;
 
@@ -110,6 +129,7 @@ int main(){
                             if(droneFound == false){
                                 cout << "No suitable drone available!" << endl;
                             }
+                            break;
                         }
                         case 4: {
                             // Back to main menu
@@ -124,19 +144,87 @@ int main(){
                 }
                 break;
             case 3: {
-                cout << "Drone Management" << endl;
-                Drone d;
-                    if(d.addDrone()==true){
-                        drones.push_back(d);
-                    }
-                    for(int i=0;i<drones.size();i++){
-                        drones[i].displayDrone();
+                while(true){
+                    int droneCh;
+                    cout << "\n========== Drone Management ==========" << endl;
+                    cout << "1.Add New Drone " << endl;
+                    cout << "2.View Available Drone " << endl;
+                    cout << "3.Delete Drone " << endl;
+                    cout << "4.Add Drones For Inspection " << endl;
+                    cout << "5.Back To Main Menu" << endl;
+                    cin >> droneCh;
+                    switch (droneCh){
+                    case 1: {
+                        Drone d;
+                        if(d.addDrone()==true){
+                            drones.push_back(d);
                         }
+                        break;
+                    }
+                    case 2: {
+                        for(int i=0;i<drones.size();i++){
+                            drones[i].displayDrone();
+                            }
+                        break;
+                    }
+                    case 3: {
+                        cout << "deleted drone , abhi delete vala feature add nhi kiya" << endl;
+                        break;
+                    }
+                    case 4: {
+                        cout << "add drone for inspection vala feature abhi pending h" << endl;
+                        break;
+                    }
+                    case 5: {
+                        break;
+                    }
+                    default:{
+                        cout << "Invalid Choice!" << endl;
+                    }
                     break;
-            } break;
+                    }
+                    if(droneCh == 5) break;
+                }
+            }break;
             case 4: {
-                cout << "Delivery Operation" << endl;
-            } break;
+                while(true){
+                    int deliveryCh;
+
+                    cout << "\n========== Delivery Operations ==========\n";
+                    cout << "1. Start Delivery" << endl;
+                    cout << "2. Complete Delivery" << endl;
+                    cout << "3. View Delivery History" << endl;
+                    cout << "4. Back To Main Menu" << endl;
+                    cout << "Enter Choice: ";
+                    cin >> deliveryCh;
+
+                    switch(deliveryCh){
+                        case 1: {
+                            cout << "Start Delivery" << endl;
+                            Delivery d;
+                            d.startDelivery();
+                            break;
+                        }
+                        case 2: {
+                            cout << "Complete Delivery" << endl;
+                            Delivery d;
+                            d.completeDelivery();
+                            break;
+                        }
+                        case 3:{
+                            cout << "Delivery history is stored in delivery_history.txt" << endl;
+                            break;
+                        }
+                        case 4:
+                            break;
+                        default:
+                            cout << "Invalid Choice!" << endl;
+                    }
+                    if(deliveryCh == 4)
+                        break;
+                }
+                break;
+            }
             case 5: {
                 cout << "tracking & reports" << endl;
             } break;
@@ -146,8 +234,9 @@ int main(){
             } break;
             default: {
                 cout << "Invalid Choice" << endl;
-            } break;
+            }
+             break;
+            }
         }
     }
-}
 }

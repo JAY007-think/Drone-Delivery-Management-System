@@ -8,7 +8,7 @@ class Customer{
  string address;
  public:
  Customer();
- void addCustomer();
+ bool addCustomer();
  void displayCustomer();
  void searchCustomer();
  void saveToFile();

@@ -1,17 +1,23 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Delivery{
+class Delivery
+{
+private:
     int deliveryId;
     int orderId;
     int droneId;
     string deliveryDate;
     string deliveryStatus;
-    public:
+
+public:
     Delivery();
-    Delivery(int deliveryid, int orderid, int droneid);
+
     void startDelivery();
     void completeDelivery();
     void displayDelivery();
     void saveHistory();
+
+    int getOrderId();
+    int getDroneId();
 };

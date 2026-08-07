@@ -9,16 +9,22 @@ Customer::Customer(){
     address = "";
 }
 
-void Customer::addCustomer(){
+bool Customer::addCustomer(){
     cout<<"enter customer id :";
     cin>>CustomerId;
     cout<<"enter customer name :";
     getline(cin>> ws,CustomerName);
     cout<<"enter mobile number :";
     cin>>mobileNum;
-    cout<<"enter address :";
-    cin>>address;
-    cout<<"Customer Add Successfully\n";
+    if(mobileNum.length() != 10){
+        cout << "Invalid Mobile Number" << endl;
+    }else{
+        cout<<"enter address :";
+        getline(cin>> ws,address);
+        cout<<"Customer Add Successfully\n";
+        return true;
+    }
+    return false;
 }
 void Customer::displayCustomer(){
     cout<<
