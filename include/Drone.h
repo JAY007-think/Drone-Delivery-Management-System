@@ -12,10 +12,16 @@ class Drone{
     public:
         Drone();
         Drone(int id, string name, float cap);
-        void addDrone();
+        bool addDrone();
         void displayDrone();
         void updateBattery();
         void changeStatus();
-        void isAvailable();
-        void needsMaintenance();
+        bool isAvailable();
+        bool needsMaintenance();
+        int getDroneId();
+        float getCapacity();
+        int getBattery();
+        string getStatus();
+        void reduceBattery(int amount);
+        void increaseDeliveryCount();
 };

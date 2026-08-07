@@ -1,40 +1,13 @@
 #include <iostream>
+#include <vector>
 #include "Drone.h"
+#include "Customer.h"
 
 using namespace std;
 
-class Customer{
-    private:
-        int customerId;
-        string customerName;
-        string mobileNum;
-        string address;
-    public:
-        Customer();
-        Customer(int id, string name, string mobileNum, string address);
-        void addCustomer();
-        void displayCustomer();
-        void searchCustomer();
-        void saveToFile();
-        void loadFromFile();
-};
-
-class Order{
-    private:
-        int orderId;
-        int customerId;
-        float packageWeight;
-        string destination;
-        string status;
-        int assignedDroneId;
-    public:
-        Order();
-        Order(int orderId, int customerId, float weight);
-        void createOrder();
-        void displayOrder();
-        void assignDrone();
-        void updateStatus();
-};
+vector<Drone> drones;
+vector<Customer> customers;
+// vector<Order> orders;
 
 class Delivery{
     private:
@@ -52,8 +25,6 @@ class Delivery{
 
 int main(){
     int ch;
-    Drone d1;
-    Customer c1;
     while(true){
         cout << "========== Drone Delivery Management System ==========\n" << endl;
         cout << "1. Customer Management" << endl;
@@ -66,31 +37,41 @@ int main(){
         cin >> ch;
         switch (ch)
         {
-            case 1:
-            cout << "Customer Management" << endl;
-            c1.addCustomer();
-            c1.displayCustomer();
-            break;
-            case 2:
-            cout << "Order Management" << endl;
-            break;
-            case 3:
-            cout << "Drone Management" << endl;
-            d1.addDrone();
-            d1.displayDrone();
-            break;
-        case 4:
-            cout << "Delivery Operation" << endl;
-            break;
-        case 5:
-            cout << "tracking & reports" << endl;
-            break;
-        case 6:
-            cout << "Thank You!" << endl;
-            return 0;
-        default:
-            cout << "Invalid Choice" << endl;
-            break;
+            case 1: {
+                cout << "Customer Management" << endl;
+                Customer c;
+                c.addCustomer();
+                customers.push_back(c);
+                for(int i = 0; i < customers.size(); i++){
+                    customers[i].displayCustomer();
+                }
+            } break;
+            case 2: {
+                cout << "Order Management" << endl;
+            } break;
+            case 3: {
+                cout << "Drone Management" << endl;
+                Drone d;
+                if(d.addDrone()==true){
+                    drones.push_back(d);
+                }
+                for(int i=0;i<drones.size();i++){
+                    drones[i].displayDrone();
+                }
+            } break;
+            case 4: {
+                cout << "Delivery Operation" << endl;
+            } break;
+            case 5: {
+                cout << "tracking & reports" << endl;
+            } break;
+            case 6: {
+                cout << "Thank You!" << endl;
+                return 0;
+            } break;
+            default: {
+                cout << "Invalid Choice" << endl;
+            } break;
         }
     }
 }

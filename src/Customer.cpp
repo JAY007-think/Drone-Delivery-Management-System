@@ -3,10 +3,10 @@
 using namespace std;
 
 Customer::Customer(){
-    CustomerId;
-    CustomerName;
-    mobileNum;
-    address;
+    CustomerId = 0;
+    CustomerName = "";
+    mobileNum = "";
+    address = "";
 }
 
 Customer::Customer(int id,string name,string mobile,string addres){
