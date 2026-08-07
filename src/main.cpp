@@ -53,6 +53,7 @@ class Delivery{
 int main(){
     int ch;
     Drone d1;
+    Customer c1;
     while(true){
         cout << "========== Drone Delivery Management System ==========\n" << endl;
         cout << "1. Customer Management" << endl;
@@ -67,6 +68,8 @@ int main(){
         {
             case 1:
             cout << "Customer Management" << endl;
+            c1.addCustomer();
+            c1.displayCustomer();
             break;
             case 2:
             cout << "Order Management" << endl;
