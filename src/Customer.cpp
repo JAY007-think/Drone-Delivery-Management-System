@@ -19,7 +19,7 @@ void Customer::addCustomer(){
     cout<<"enter customer id :";
     cin>>CustomerId;
     cout<<"enter customer name :";
-    cin>>CustomerName;
+    getline(cin>> ws,CustomerName);
     cout<<"enter mobile number :";
     cin>>mobileNum;
     cout<<"enter address :";
