@@ -3,7 +3,12 @@
 using namespace std;
 
 Order::Order(){
-
+    OrderId=0;
+    CustomerId=0;
+    AssignedDroneId=0;
+    PackageWeight=0;
+    Destination="";
+    status="Pending";
 }
 
 Order::Order(int id,int customerId,float Weight,string destination){
