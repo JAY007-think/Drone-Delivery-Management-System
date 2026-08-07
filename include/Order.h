@@ -2,17 +2,24 @@
 using namespace std;
 
 class Order{
-    int OrderId;
-    int CustomerId;
-    int AssignedDroneId;
-    float PackageWeight;
-    string Destination;
-    string status;
+    private:
+        int OrderId;
+        int CustomerId;
+        int AssignedDroneId;
+        float PackageWeight;
+        string Destination;
+        string status;
     public:
-    Order();
-    Order(int id,int customerId,float Weight,string destination);
-    void createOrder();
-    void displayOrder();
-    void assignDrone();
-    void updateStatus();
+        Order();
+        bool createOrder();
+        void displayOrder();
+        void assignDrone(int drone_id);
+        void updateStatus(string newStatus);
+        int getOrderId();
+        int getCustomerId();
+        float getPackageWeight();
+        int getAssignedDroneId();
+
+        void setAssignedDroneId(int id);
+        void setStatus(string newStatus);
 };

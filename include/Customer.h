@@ -8,7 +8,6 @@ class Customer{
  string address;
  public:
  Customer();
- Customer(int id,string name,string mobile,string addres);
  void addCustomer();
  void displayCustomer();
  void searchCustomer();

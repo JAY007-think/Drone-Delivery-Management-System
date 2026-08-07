@@ -11,28 +11,28 @@ Order::Order(){
     status="Pending";
 }
 
-Order::Order(int id,int customerId,float Weight,string destination){
-    OrderId=id;
-    CustomerId=customerId;
-    PackageWeight=Weight;
-    Destination=destination;
-}
-void Order::createOrder(){
+bool Order::createOrder(){
     cout<<"enter order Id :";
     cin>>OrderId;
     cout<<"enter customer Id :";
     cin>>CustomerId;
     cout<<"enter package Weight :";
     cin>>PackageWeight;
-    cout<<"enter Destination :";
-    cin>>Destination;
+    if(PackageWeight <=0){
+        cout << "Invalid weight!" << endl;
+        return false;
+    }else{
+        cout<<"enter Destination :";
+        getline(cin>> ws,Destination);
+        return true;
+    }
     
 }
-void Order::assignDrone(){
-    AssignedDroneId=0;
+void Order::assignDrone(int droneId){
+    AssignedDroneId = droneId;
 }
-void Order :: updateStatus(){
-    status="Pending";
+void Order::updateStatus(string newStatus){
+    status = newStatus;
 }
 void Order ::displayOrder(){
     cout<<"\n---------------------------\n";
@@ -43,9 +43,22 @@ void Order ::displayOrder(){
     cout<<"\nAssigned Drone      :"<<AssignedDroneId;
     cout<<"\nStatus              :"<<status;
 }
-void Order ::assignDrone(){
 
+int Order::getOrderId(){
+    return OrderId;
 }
-void Order ::updateStatus(){
-    
+int Order::getCustomerId(){
+    return CustomerId;
+}
+float Order::getPackageWeight(){
+    return PackageWeight;
+}
+int Order::getAssignedDroneId(){
+    return AssignedDroneId;
+}
+void Order::setAssignedDroneId(int id){
+    AssignedDroneId = id;
+}
+void Order::setStatus(string newStatus){
+    status = newStatus;
 }

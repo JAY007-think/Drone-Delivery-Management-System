@@ -9,12 +9,6 @@ Customer::Customer(){
     address = "";
 }
 
-Customer::Customer(int id,string name,string mobile,string addres){
-    CustomerId=id;
-    CustomerName=name;
-    mobileNum=mobile;
-    address=addres;
-}
 void Customer::addCustomer(){
     cout<<"enter customer id :";
     cin>>CustomerId;

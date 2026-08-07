@@ -11,7 +11,6 @@ class Drone{
         int deliveryCount;
     public:
         Drone();
-        Drone(int id, string name, float cap);
         bool addDrone();
         void displayDrone();
         void updateBattery();
@@ -24,4 +23,5 @@ class Drone{
         string getStatus();
         void reduceBattery(int amount);
         void increaseDeliveryCount();
+        void setStatus(string newStatus);
 };

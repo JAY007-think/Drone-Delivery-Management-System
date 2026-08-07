@@ -7,15 +7,7 @@ Drone::Drone(){
     status = "Available";
     deliveryCount = 0;
 }
-Drone::Drone(int id, string name, float cap)
-{
-    drone_id = id;
-    drone_name = name;
-    capacity = cap;
-    battery = 100;
-    status = "Available";
-    deliveryCount = 0;
-}
+
 bool Drone::addDrone(){
     cout << "Enter Drone ID: ";
     cin >> drone_id;
@@ -97,9 +89,16 @@ void Drone::changeStatus(){
 }
 
 void Drone::updateBattery(){
-    cout << "Enter new Battery : ";
-    cin >> battery;
-    if(battery <=0 || battery >100 ){
-        cout << "Inavalid choice"<<endl;
-   }
+    int newBattery;
+    cout << "Enter new Battery: ";
+    cin >> newBattery;
+    if(newBattery < 0 || newBattery > 100){
+        cout << "Invalid Battery!" << endl;
+    }
+    else{
+        battery = newBattery;
+    }
+}
+void Drone::setStatus(string newStatus){
+    status = newStatus;
 }
