@@ -1,24 +1,7 @@
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
+#include "Drone.h"
 
-class Drone{
-    private:
-        string drone_name;
-        int drone_id;
-        float capacity;
-        int battery;
-        string status;
-        int deliveryCount;
-    public:
-        Drone();
-        Drone(int id, string name, float cap);
-        void addDrone();
-        void displayDrone();
-        void updateBattery();
-        void changeStatus();
-        void isAvailable();
-        void needsMaintenance();
-};
+using namespace std;
 
 class Customer{
     private:
@@ -101,7 +84,7 @@ int main(){
             break;
         case 6:
             cout << "Thank You!" << endl;
-            break;
+            return 0;
         default:
             cout << "Invalid Choice" << endl;
             break;

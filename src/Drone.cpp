@@ -25,11 +25,12 @@ void Drone::addDrone(){
     cin >> capacity;
     if(capacity<=0){
         cout << "Invalid Capacity!" << endl;
+    }else{
+        battery = 100;
+        status = "Available";
+        deliveryCount = 0;
+        cout << "Drone Added Successfully!" << endl;
     }
-    battery = 100;
-    status = "Available";
-    deliveryCount = 0;
-    cout << "Drone Added Successfully!" << endl;
 };
 void Drone::displayDrone(){
     cout << "------------------------------" << endl;
