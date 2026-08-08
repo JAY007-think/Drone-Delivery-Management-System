@@ -1,4 +1,5 @@
 #include"Delivery.h"
+#include<fstream>
 #include<iostream>
 using namespace std;
 
@@ -42,4 +43,54 @@ int Delivery::getOrderId(){
 
 int Delivery::getDroneId(){
     return droneId;
+}
+void Delivery::saveHistory()
+{
+    ofstream file("history.txt", ios::app);
+
+    if (!file)
+    {
+        cout << "Unable to open history file." << endl;
+        return;
+    }
+
+    file << deliveryId << " "
+         << orderId << " "
+         << droneId << " "
+         << deliveryDate << " "
+         << deliveryStatus << endl;
+
+    file.close();
+
+    cout << "Delivery history saved successfully!" << endl;
+}
+void Delivery::loadHistory()
+{
+    ifstream file("history.txt");
+
+    if (!file)
+    {
+        cout << "No delivery history found." << endl;
+        return;
+    }
+
+    int id;
+    int order;
+    int drone;
+    string date;
+    string status;
+
+    cout << "\n========== Delivery History ==========\n";
+
+    while (file >> id >> order >> drone >> date >> status)
+    {
+        cout << "-----------------------------" << endl;
+        cout << "Delivery ID   : " << id << endl;
+        cout << "Order ID      : " << order << endl;
+        cout << "Drone ID      : " << drone << endl;
+        cout << "Date          : " << date << endl;
+        cout << "Status        : " << status << endl;
+    }
+
+    file.close();
 }

@@ -1,5 +1,6 @@
 #include"Order.h"
 #include<iostream>
+#include<fstream>
 using namespace std;
 
 Order::Order(){
@@ -61,4 +62,64 @@ void Order::setAssignedDroneId(int id){
 }
 void Order::setStatus(string newStatus){
     status = newStatus;
+}
+void Order::saveToFile()
+{
+    ofstream file("orders.txt", ios::app);
+
+    if (!file)
+    {
+        cout << "Unable to open order file." << endl;
+        return;
+    }
+
+    file << OrderId << " "
+         << CustomerId << " "
+         << PackageWeight << " "
+         << Destination << " "
+         << status << " "
+         << AssignedDroneId << endl;
+
+    file.close();
+
+    cout << "Order saved successfully!" << endl;
+}
+void Order::loadFromFile()
+{
+    ifstream file("orders.txt");
+
+    if (!file)
+    {
+        cout << "No order data found." << endl;
+        return;
+    }
+
+    int id;
+    int custId;
+    float weight;
+    string place;
+    string orderStatus;
+    int droneId;
+
+    while (file >> id >> custId >> weight >> place >> orderStatus >> droneId)
+    {
+        cout << "-----------------------------" << endl;
+
+        cout << "Order ID        : " << id << endl;
+        cout << "Customer ID     : " << custId << endl;
+        cout << "Package Weight  : " << weight << " kg" << endl;
+        cout << "Destination     : " << place << endl;
+        cout << "Status          : " << orderStatus << endl;
+
+        if (droneId == 0)
+        {
+            cout << "Assigned Drone  : Not Assigned" << endl;
+        }
+        else
+        {
+            cout << "Assigned Drone  : " << droneId << endl;
+        }
+    }
+
+    file.close();
 }

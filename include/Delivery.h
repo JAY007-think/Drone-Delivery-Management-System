@@ -20,4 +20,6 @@ public:
 
     int getOrderId();
     int getDroneId();
+
+    void loadHistory(); 
 };

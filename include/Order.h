@@ -22,4 +22,7 @@ class Order{
 
         void setAssignedDroneId(int id);
         void setStatus(string newStatus);
+
+        void saveToFile();
+        void  loadFromFile();
 };
