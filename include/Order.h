@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class Order{
@@ -24,5 +25,6 @@ class Order{
         void setStatus(string newStatus);
 
         void saveToFile();
-        void  loadFromFile();
+        void loadFromFile(vector<Order>& orders);
+        void loadData(int id, int customerId, float weight, string destination, string orderStatus, int droneId);
 };

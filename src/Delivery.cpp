@@ -1,40 +1,38 @@
-#include"Delivery.h"
-#include<fstream>
-#include<iostream>
+#include "Delivery.h"
+#include <fstream>
+#include <iostream>
 using namespace std;
 
 Delivery::Delivery(){
-    deliveryId=0;
-    orderId=0;
-    droneId=0;
-    deliveryDate="";
-    deliveryStatus="Not Started";
-    
+    deliveryId = 0;
+    orderId = 0;
+    droneId = 0;
+    deliveryDate = "";
+    deliveryStatus = "Not Started";
 }
 
-void Delivery::startDelivery(){
-    cout<<"enter delivery ID :";
-    cin>>deliveryId;
-    cout<<"enter order ID :";
-    cin>>orderId;
-    cout<<"enter drone ID :";
-    cin>>droneId;
-    cout<<"enter delivery date :";
-    cin>>deliveryDate;
-    cout<<"Delivery Starte Successfully\n";
+void Delivery::startDelivery(int order, int drone, string date){
+    cout << "Enter Delivery ID: ";
+    cin >> deliveryId;
+    orderId = order;
+    droneId = drone;
+    deliveryDate = date;
+    deliveryStatus = "In Progress";
+    cout << "Delivery Started Successfully" << endl;
 }
+
 void Delivery::completeDelivery(){
-    deliveryStatus="completed";
-    cout<<"Delivery Complete Succesfully";
+    deliveryStatus = "Completed";
+    cout << "Delivery Completed Successfully" << endl;
 }
+
 void Delivery::displayDelivery(){
-    cout<<
-    "\n-------------------------------\n";
-    cout<<"Delivery ID        :"<<deliveryId;
-    cout<<"\nDrone ID           :"<<droneId;
-    cout<<"\nOrder ID           :"<<orderId;
-    cout<<"\nDelivery Date      :"<<deliveryDate;
-    cout<<"\nStatus             :"<<deliveryStatus<<"\n";
+    cout << "\n-------------------------------\n";
+    cout << "Delivery ID        : " << deliveryId << endl;
+    cout << "Drone ID           : " << droneId << endl;
+    cout << "Order ID           : " << orderId << endl;
+    cout << "Delivery Date      : " << deliveryDate << endl;
+    cout << "Status             : " << deliveryStatus << "\n";
 }
 
 int Delivery::getOrderId(){
@@ -44,12 +42,11 @@ int Delivery::getOrderId(){
 int Delivery::getDroneId(){
     return droneId;
 }
-void Delivery::saveHistory()
-{
-    ofstream file("history.txt", ios::app);
 
-    if (!file)
-    {
+void Delivery::saveHistory(){
+    ofstream file("../data/history.txt", ios::app);
+
+    if (!file){
         cout << "Unable to open history file." << endl;
         return;
     }
@@ -61,15 +58,12 @@ void Delivery::saveHistory()
          << deliveryStatus << endl;
 
     file.close();
-
-    cout << "Delivery history saved successfully!" << endl;
 }
-void Delivery::loadHistory()
-{
-    ifstream file("history.txt");
 
-    if (!file)
-    {
+void Delivery::loadHistory(){
+    ifstream file("../data/history.txt");
+
+    if (!file){
         cout << "No delivery history found." << endl;
         return;
     }
@@ -82,8 +76,7 @@ void Delivery::loadHistory()
 
     cout << "\n========== Delivery History ==========\n";
 
-    while (file >> id >> order >> drone >> date >> status)
-    {
+    while (file >> id >> order >> drone >> date >> status){
         cout << "-----------------------------" << endl;
         cout << "Delivery ID   : " << id << endl;
         cout << "Order ID      : " << order << endl;

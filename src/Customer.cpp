@@ -1,6 +1,6 @@
-#include<iostream>
-#include<fstream>
-#include"Customer.h"
+#include <iostream>
+#include <fstream>
+#include "Customer.h"
 using namespace std;
 
 Customer::Customer(){
@@ -11,73 +11,86 @@ Customer::Customer(){
 }
 
 bool Customer::addCustomer(){
-    cout<<"enter customer id :";
-    cin>>CustomerId;
-    cout<<"enter customer name :";
-    getline(cin>> ws,CustomerName);
-    cout<<"enter mobile number :";
-    cin>>mobileNum;
+    cout << "Enter Customer ID: ";
+    cin >> CustomerId;
+    cout << "Enter Customer Name: ";
+    getline(cin >> ws, CustomerName);
+    cout << "Enter Mobile Number: ";
+    cin >> mobileNum;
     if(mobileNum.length() != 10){
         cout << "Invalid Mobile Number" << endl;
-    }else{
-        cout<<"enter address :";
-        getline(cin>> ws,address);
-        cout<<"Customer Add Successfully\n";
-        return true;
+        return false;
     }
-    return false;
+    cout << "Enter Address: ";
+    getline(cin >> ws, address);
+    cout << "Customer Added Successfully" << endl;
+    return true;
 }
+
 void Customer::displayCustomer(){
-    cout<<
-    "\n------------------------------------------\n";
-    cout<<"Cusstomer ID      :"<<CustomerId<<"\n";
-    cout<<"Customer Name     :"<<CustomerName<<"\n";
-    cout<<"Mobile Number     :"<<mobileNum<<"\n";
-    cout<<"Address           :"<<address<<"\n";
-    cout<<
-    "------------------------------------------\n";
+    cout << "\n------------------------------------------\n";
+    cout << "Customer ID      : " << CustomerId << "\n";
+    cout << "Customer Name    : " << CustomerName << "\n";
+    cout << "Mobile Number    : " << mobileNum << "\n";
+    cout << "Address          : " << address << "\n";
+    cout << "------------------------------------------\n";
 }
-void Customer::searchCustomer(){
 
+void Customer::searchCustomer(int targetId){
+    if(CustomerId == targetId){
+        displayCustomer();
+    }
 }
+
 void Customer::saveToFile(){
-    ofstream file("Customer.txt",ios::app);
-    if(!file){
-        cout<<"unable to open customer file."<<endl;
-        return ;
-    }
-    file<<CustomerId<<" "
-        <<CustomerName<<" "
-        <<mobileNum<<" "
-        <<address<<endl;
-    
+    ofstream file("../data/Customer.txt", ios::app);
+
+    if(file.is_open()){
+        file << CustomerId << endl;
+        file << CustomerName << endl;
+        file << mobileNum << endl;
+        file << address << endl;
         file.close();
-
-        cout<<"Customer saved successfully!"<<endl;
+    }
+    else{
+        cout << "File could not be opened!" << endl;
+    }
 }
-void Customer::loadFromFile(){
-    ifstream file("Customer.txt");
+
+void Customer::loadFromFile(vector<Customer>& customers){
+    ifstream file("../data/Customer.txt");
 
     if(!file){
-        cout<<"No customer data found."<<endl;
-        return ;
+        cout << "No customer data found." << endl;
+        return;
     }
+
     int id;
     string name;
     string mobile;
-    string address;
+    string addr;
 
-    while(file>>id>>name>>mobile>>address){
-        cout<<
-        "--------------------------------"<<endl;
-        cout<<"Customer ID         :"<<id<<endl;
-        cout<<"Customer Name       :"<<name<<endl;
-        cout<<"Mobile Number       :"<<mobile<<endl;
-        cout<<"Address             :"<<address<<endl;
+    while(file >> id){
+        file.ignore();
+        getline(file, name);
+        getline(file, mobile);
+        getline(file, addr);
+
+        Customer c;
+        c.loadData(id, name, mobile, addr);
+        customers.push_back(c);
     }
+
     file.close();
 }
 
+void Customer::loadData(int id, string name, string mobile, string addr){
+    CustomerId = id;
+    CustomerName = name;
+    mobileNum = mobile;
+    address = addr;
+}
 
-
-
+int Customer::getCustomerId(){
+    return CustomerId;
+}

@@ -13,7 +13,7 @@ private:
 public:
     Delivery();
 
-    void startDelivery();
+    void startDelivery(int orderId, int droneId, string date);
     void completeDelivery();
     void displayDelivery();
     void saveHistory();
@@ -21,5 +21,5 @@ public:
     int getOrderId();
     int getDroneId();
 
-    void loadHistory(); 
+    void loadHistory();
 };

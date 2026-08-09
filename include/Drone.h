@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class Drone{
@@ -11,17 +12,27 @@ class Drone{
         int deliveryCount;
     public:
         Drone();
+
         bool addDrone();
         void displayDrone();
+
         void updateBattery();
         void changeStatus();
+
         bool isAvailable();
         bool needsMaintenance();
+
         int getDroneId();
         float getCapacity();
         int getBattery();
         string getStatus();
+
         void reduceBattery(int amount);
         void increaseDeliveryCount();
+
         void setStatus(string newStatus);
+
+        void saveToFile();
+        void loadFromFile(vector<Drone>& drones);
+        void loadData(int id, string name, float cap, int bat, string stat, int count);
 };
