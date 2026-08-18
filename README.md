@@ -1,17 +1,33 @@
 # Drone Delivery Management System
 
-A C++ object-oriented project for managing customer records, drone inventory, delivery orders, and delivery tracking. The system simulates a basic drone logistics workflow and stores data in text files for persistence.
+A modular C++ application that simulates a basic drone delivery workflow. The system manages customers, drones, delivery orders, and delivery tracking, with text-file-based persistence for storing application data.
 
 ## Features
 
-- Add, view, search, and delete customer records
-- Add, view, search, and delete drones
-- Create and manage delivery orders
+### Customer Management
+- Add customer records
+- View all customers
+- Search customers
+- Delete customer records
+
+### Drone Management
+- Add drones to the inventory
+- View available drones
+- Search drones
+- Delete drone records
+- Track drone battery levels and availability status
+
+### Order and Delivery Management
+- Create delivery orders
+- Manage package and destination details
 - Assign suitable drones to orders
-- Update battery and status information for drones
-- Track delivery history and status updates
-- Store and load data from files
-- Console-based modular menu system
+- Track order and delivery status
+- Maintain delivery history
+
+### Data Persistence
+- Store application data in text files
+- Load saved customer and drone data
+- Maintain order and delivery history between program runs
 
 ## Project Structure
 
@@ -37,54 +53,78 @@ Drone-Delivery-Management-System/
 └── .gitignore
 ```
 
-## Concepts Used
+## Concepts and Technologies
 
+- C++
 - Object-Oriented Programming
 - Classes and Objects
 - Encapsulation
+- Header and Source File Separation
 - File Handling
-- Modular Program Design
 - Data Persistence
-- Menu-Driven Application Design
+- Modular Program Design
+- Menu-Driven Application Architecture
 
 ## System Design
 
-The application models the main entities involved in a drone delivery workflow:
+The application is organized around four core entities:
 
-- Customer — stores customer details such as ID, name, mobile number, and address.
-- Drone — represents available drones, including ID, name, capacity, battery level, and status.
-- Order — manages customer orders, package details, destination, and assigned drone.
-- Delivery — tracks the movement of an order from assignment to completion and stores delivery history.
+- **Customer** — manages customer information such as ID, name, mobile number, and address.
+- **Drone** — represents drones in the system, including their ID, name, capacity, battery level, and current status.
+- **Order** — manages delivery requests, package details, destination information, and assigned drones.
+- **Delivery** — tracks the lifecycle of an order from drone assignment to completion and maintains delivery history.
 
-Each entity is implemented as a separate class to keep the code modular, understandable, and easier to maintain.
+Each entity is implemented as a separate class with its own header and source files. This separation keeps the application modular and makes individual components easier to understand and maintain.
 
-## How to Run
+## How It Works
 
-### 1. Clone the repository
+A typical workflow is:
+
+```text
+Customer Registration
+        ↓
+Drone Management
+        ↓
+Order Creation
+        ↓
+Drone Assignment
+        ↓
+Delivery Status Tracking
+        ↓
+Delivery History
+```
+
+Application data is stored in text files inside the `data/` directory, allowing records to persist between program executions.
+
+## Getting Started
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/JAY007-think/Drone-Delivery-Management-System.git
 cd Drone-Delivery-Management-System
 ```
 
-### 2. Compile the project
+### 2. Compile the Project
+
+Using `g++`:
 
 ```bash
 g++ src/*.cpp -I include -o drone_delivery
 ```
 
-### 3. Run the application
+### 3. Run the Application
 
-Linux/macOS:
+**Linux/macOS**
 
 ```bash
 ./drone_delivery
 ```
 
-Windows:
+**Windows**
 
 ```powershell
-drone_delivery.exe
+.\drone_delivery.exe
 ```
 
 ## What I Learned
@@ -92,27 +132,32 @@ drone_delivery.exe
 While building this project, I practiced:
 
 - Designing relationships between multiple classes
-- Organizing a C++ project using header and source files
-- Managing application state in memory and files
-- Using file handling for data persistence
-- Structuring a console application into modular components
-- Implementing a menu-driven workflow for real-world systems
+- Structuring a multi-file C++ application
+- Separating declarations and implementations using header and source files
+- Managing application state
+- Reading and writing persistent data using file handling
+- Designing a menu-driven application workflow
+- Breaking a larger problem into smaller, modular components
 
 ## Future Improvements
 
-- Input validation and stronger error handling
-- Search and filtering functionality
-- Improved order assignment logic
-- Database integration for scalable storage
+Potential improvements include:
+
+- Stronger input validation and error handling
+- Advanced search and filtering
+- Improved drone-to-order assignment logic
+- Better handling of edge cases
+- Database integration for persistent and scalable storage
+- Delivery analytics and reporting
 - Graphical or web-based interface
-- Delivery analytics and reports
 
 ## Author
 
 **Jay Soni**
 
-[GitHub](https://github.com/JAY007-think) • [LinkedIn](https://www.linkedin.com/in/jayz-tech/)
+- GitHub: [JAY007-think](https://github.com/JAY007-think)
+- LinkedIn: [jayz-tech](https://www.linkedin.com/in/jayz-tech/)
 
 ## License
 
-This project is available for learning and educational purposes.
+This project is intended for learning and educational purposes.
