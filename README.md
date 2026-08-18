@@ -1,6 +1,6 @@
 # Drone Delivery Management System
 
-A simple C++ console project for managing customers, drones, orders, and deliveries.
+A C++ object-oriented system for managing customers, drones, orders, and deliveries with file-based persistence.
 
 ## Features
 - Add and view customers
